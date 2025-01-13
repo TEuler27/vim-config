@@ -1,0 +1,34 @@
+# Function to detect math mode
+global !p
+def math():
+  return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+# Autocomplete snippets
+
+snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
+`!p snip.rv = match.group(1)`\$ ${1:${VISUAL:}} \$$0
+endsnippet
+
+context "math()"
+snippet ' ([A-Za-ln-z])([0-9nkjim])' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+snippet '([A-Za-z])_(\d\d)' "auto subscript with two char" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+snippet sb "Long subscript" iA
+_{$1}$0
+endsnippet
+
+snippet eps "auto epsilon" iA
+\varepsilon
+endsnippet
+
+# Non autocomplete snippets
+
+snippet ff "The LaTeX \frac{}{} command"
+\frac{$1}{$2}$0
+endsnippet
