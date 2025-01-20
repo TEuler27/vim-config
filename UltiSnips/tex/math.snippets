@@ -10,25 +10,122 @@ snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
 `!p snip.rv = match.group(1)`\$ ${1:${VISUAL:}} \$$0
 endsnippet
 
-context "math()"
-snippet ' ([A-Za-ln-z])([0-9nkjim])' "auto subscript" wrA
-`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
-endsnippet
-
 snippet '([A-Za-z])_(\d\d)' "auto subscript with two char" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
+context "math()"
 snippet sb "Long subscript" iA
-_{$1}$0
+_{ $1 } $0
+endsnippet
+
+context "math()"
+snippet sp "Long superscript" iA
+^{ $1 } $0
 endsnippet
 
 snippet eps "auto epsilon" iA
-\varepsilon
+ \varepsilon $0
 endsnippet
 
-# Non autocomplete snippets
+context "math()"
+snippet cal "Calligraphic font" iA
+\mathcal{ $1 } $0
+endsnippet
 
-snippet ff "The LaTeX \frac{}{} command"
-\frac{$1}{$2}$0
+context "math()"
+snippet sob "Sobolev space" iA
+W^{ $1 }( $2 ) $0
+endsnippet
+
+context "math()"
+snippet ff "Fractions" iA
+\frac{ $1 }{ $2 } $0
+endsnippet
+
+context "math()"
+snippet um "One Half" iA
+\frac{ 1 }{ 2 } $0
+endsnippet
+
+context "math()"
+snippet sqrt "Square root" iA
+\sqrt{ $1 } $0
+endsnippet
+
+context "math()"
+snippet rr "Real numbers" iA
+\r
+endsnippet
+
+context "math()"
+snippet cos "Cosine" A
+\cos( $1 ) $0
+endsnippet
+
+context "math()"
+snippet sin "Sine" A
+\sin( $1 ) $0
+endsnippet
+
+context "math()"
+snippet '(d[rxyzts]|d\\sigma|d\\mu)' "Differential" rA
+\, `!p snip.rv = match.group(1)`
+endsnippet
+
+snippet '\\r([0-9nmdk])' "auto superscript for reals" rA
+\r^`!p snip.rv = match.group(1)`
+endsnippet
+
+context "math()"
+snippet cases "Cases environment" A
+\begin{cases}
+    $1
+\end{cases}
+$0
+endsnippet
+
+
+context "math()"
+snippet bb "Blackboard font" A
+\mathbb{ $1 } $0
+endsnippet
+
+# Parentheses
+
+context "math()"
+snippet '[(]' "(" irA
+( $1 ) $0
+endsnippet
+
+snippet "[[]" "[" irA
+[ $1 ] $0
+endsnippet
+
+snippet "[|]" "|" irA
+| $1 | $0
+endsnippet
+
+# Greek letters
+
+context "math()"
+snippet "(alpha|Alpha|beta|gamma|Gamma|omega)" "Greek letters" irA
+\\`!p snip.rv = match.group(1)` $0
+endsnippet
+
+context "math()"
+snippet "(Omega|eta|chi|eta|mu|pi|Pi|rho|xi|lambda|Lambda|nu)" "Greek letters 2" irA
+\\`!p snip.rv = match.group(1)` $0
+endsnippet
+
+# Math commands
+
+context "math()"
+snippet "(leq|geq|subset|nabla|tilde|hat|backslash|infty|ast|to|sim|int|cdot)" "Math commands" irA
+\\`!p snip.rv = match.group(1)` $0
+endsnippet
+
+context "math()"
+snippet inn "Correction for in" A
+\in $0
 endsnippet

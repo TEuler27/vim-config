@@ -1,8 +1,33 @@
 # Snippet for creating new generic LaTeX environments
 
-snippet env "New LaTeX environment" b
+snippet env "New LaTeX environment" bA
 \begin{$1}
     $2
 \end{$1}
 $0
+endsnippet
+
+
+snippet ref "New reference" A 
+\ref{$1}$0
+endsnippet
+
+snippet cref "New Creference" A 
+\Cref{$1}$0
+endsnippet
+
+snippet eqref "New eqref" A 
+\eqref{$1}$0
+endsnippet
+
+snippet label "New label" iA 
+\label{$1}$0
+endsnippet
+
+snippet cite "New cite" A 
+\cite{$1}$0
+endsnippet
+
+snippet rcite "New cite with reference" A 
+\cite[$1]{$2}$0
 endsnippet
