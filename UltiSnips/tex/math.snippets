@@ -16,12 +16,12 @@ endsnippet
 
 context "math()"
 snippet sb "Long subscript" iA
-_{ $1 } $0
+_{$1}$0
 endsnippet
 
 context "math()"
 snippet sp "Long superscript" iA
-^{ $1 } $0
+^{$1} $0
 endsnippet
 
 snippet eps "auto epsilon" iA
@@ -30,27 +30,27 @@ endsnippet
 
 context "math()"
 snippet cal "Calligraphic font" iA
-\mathcal{ $1 } $0
+\mathcal{$1}$0
 endsnippet
 
 context "math()"
 snippet sob "Sobolev space" iA
-W^{ $1 }( $2 ) $0
+W^{$1}($2)$0
 endsnippet
 
 context "math()"
 snippet ff "Fractions" iA
-\frac{ $1 }{ $2 } $0
+\frac{$1}{$2}$0
 endsnippet
 
 context "math()"
 snippet um "One Half" iA
-\frac{ 1 }{ 2 } $0
+\frac{1}{2}$0
 endsnippet
 
 context "math()"
 snippet sqrt "Square root" iA
-\sqrt{ $1 } $0
+\sqrt{$1} $0
 endsnippet
 
 context "math()"
@@ -60,12 +60,17 @@ endsnippet
 
 context "math()"
 snippet cos "Cosine" A
-\cos( $1 ) $0
+\cos($1)$0
 endsnippet
 
 context "math()"
 snippet sin "Sine" A
-\sin( $1 ) $0
+\sin($1)$0
+endsnippet
+
+context "math()"
+snippet par "Partial" A
+\partial $0
 endsnippet
 
 context "math()"
@@ -85,43 +90,54 @@ snippet cases "Cases environment" A
 $0
 endsnippet
 
+context "math()"
+snippet int "Integral" A
+\int_{$1}$0
+endsnippet
+
+context "math()"
+snippet sum "Sum" A
+\sum_{$1}$0
+endsnippet
 
 context "math()"
 snippet bb "Blackboard font" A
-\mathbb{ $1 } $0
+\mathbb{$1}$0
 endsnippet
 
 # Parentheses
 
 context "math()"
 snippet '[(]' "(" irA
-( $1 ) $0
+($1)$0
 endsnippet
 
+context "math()"
 snippet "[[]" "[" irA
-[ $1 ] $0
+[$1]$0
 endsnippet
 
+context "math()"
 snippet "[|]" "|" irA
-| $1 | $0
+|$1|$0
 endsnippet
 
 # Greek letters
 
 context "math()"
-snippet "(alpha|Alpha|beta|gamma|Gamma|omega)" "Greek letters" irA
+snippet "(alpha|Alpha|beta|gamma|Gamma|omega|sigma|Sigma|delta|Delta)" "Greek letters" irA
 \\`!p snip.rv = match.group(1)` $0
 endsnippet
 
 context "math()"
-snippet "(Omega|eta|chi|eta|mu|pi|Pi|rho|xi|lambda|Lambda|nu)" "Greek letters 2" irA
+snippet "(Omega|eta|chi|mu|pi|Pi|rho|xi|lambda|Lambda|nu)" "Greek letters 2" irA
 \\`!p snip.rv = match.group(1)` $0
 endsnippet
 
 # Math commands
 
 context "math()"
-snippet "(leq|geq|subset|nabla|tilde|hat|backslash|infty|ast|to|sim|int|cdot)" "Math commands" irA
+snippet "(leq|geq|subset|nabla|tilde|hat|backslash|infty|ast|to|sim|cdot)" "Math commands" irA
 \\`!p snip.rv = match.group(1)` $0
 endsnippet
 
