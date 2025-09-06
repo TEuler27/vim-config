@@ -49,6 +49,7 @@ Plug 'lervag/vimtex'
 Plug 'sirver/ultisnips', { 'for': ['tex', 'snippets']}
 Plug 'dylanaraps/wal.vim'
 Plug 'dpelle/vim-LanguageTool'
+Plug 'farconics/victionary'
 
 call plug#end()
 
