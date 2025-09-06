@@ -7,7 +7,7 @@ endglobal
 # Autocomplete snippets
 
 snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
-`!p snip.rv = match.group(1)`\$ ${1:${VISUAL:}} \$$0
+`!p snip.rv = match.group(1)`\$${1:${VISUAL:}}\$$0
 endsnippet
 
 snippet '([A-Za-z])_(\d\d)' "auto subscript with two char" wrA
@@ -20,12 +20,13 @@ _{$1}$0
 endsnippet
 
 context "math()"
-snippet sp "Long superscript" iA
-^{$1} $0
+snippet "(?<!di)sp([^h])" "Long superscript" irA
+^{`!p snip.rv = match.group(1)`$1}$0
 endsnippet
 
+context "math()"
 snippet eps "auto epsilon" iA
- \varepsilon $0
+\varepsilon$0
 endsnippet
 
 context "math()"
@@ -44,18 +45,18 @@ snippet ff "Fractions" iA
 endsnippet
 
 context "math()"
-snippet um "One Half" iA
+snippet 'um' "One Half" iA
 \frac{1}{2}$0
 endsnippet
 
 context "math()"
 snippet sqrt "Square root" iA
-\sqrt{$1} $0
+\sqrt{$1}$0
 endsnippet
 
 context "math()"
 snippet rr "Real numbers" iA
-\r
+\R
 endsnippet
 
 context "math()"
@@ -69,24 +70,39 @@ snippet sin "Sine" A
 endsnippet
 
 context "math()"
-snippet par "Partial" A
-\partial $0
+snippet '(d[rxyzts][^b]|d\\sigma|d\\mu) ' "Differential" rA
+\, `!p snip.rv = match.group(1)` 
+endsnippet
+
+snippet '\\R([0-9nmdk]) ' "auto superscript for reals" rA
+\R^{`!p snip.rv = match.group(1)`} $0
+endsnippet
+
+snippet '\\R([0-9nmdk])([0-9nmdk])' "auto superscript for reals" rA
+\R^{`!p snip.rv = match.group(1)` \\times `!p snip.rv = match.group(2)`}$0
 endsnippet
 
 context "math()"
-snippet '(d[rxyzts]|d\\sigma|d\\mu)' "Differential" rA
-\, `!p snip.rv = match.group(1)`
-endsnippet
-
-snippet '\\r([0-9nmdk])' "auto superscript for reals" rA
-\r^`!p snip.rv = match.group(1)`
-endsnippet
-
-context "math()"
-snippet cases "Cases environment" A
+snippet cas "Cases environment" A
 \begin{cases}
     $1
 \end{cases}
+$0
+endsnippet
+
+context "math()"
+snippet pmat "Pmatrix environment" A
+\begin{pmatrix}
+    $1
+\end{pmatrix}
+$0
+endsnippet
+
+context "math()"
+snippet bmat "Bmatrix environment" A
+\begin{bmatrix*}
+    $1
+\end{bmatrix*}
 $0
 endsnippet
 
@@ -96,13 +112,71 @@ snippet int "Integral" A
 endsnippet
 
 context "math()"
-snippet sum "Sum" A
-\sum_{$1}$0
+snippet bb "Blackboard font" A
+\mathbb{$1}$0
 endsnippet
 
 context "math()"
-snippet bb "Blackboard font" A
-\mathbb{$1}$0
+snippet "([^b])set([^m])" "Set" irA
+`!p snip.rv = match.group(1)`\\{`!p snip.rv = match.group(2)`$1\\}$0
+endsnippet
+
+context "math()"
+snippet "norm([^a])" "norm" irA
+\\|`!p snip.rv = match.group(1)`$1\\|$0
+endsnippet
+
+context "math()"
+snippet " "text" iA
+\\text{$1}
+endsnippet
+
+# Greek Letters
+
+context "math()"
+snippet '(alpha|beta|gamma|delta|xi|eta|lambda|sigma|omega|phi|varphi|mu|rho|chi|kappa|tau)' "greek letters" irA
+\\`!p snip.rv = match.group(1)`$0
+endsnippet
+
+# Uppercase Greek Letters
+
+context "math()"
+snippet '(Alpha|Beta|Gamma|Delta|Lambda|Sigma|Omega|Phi|Psi|Pi)' "Greek letters" irA
+\\`!p snip.rv = match.group(1)`$0
+endsnippet
+
+# Commands
+
+context "math()"
+snippet '(times|cdot|infty|cap|cup|paratial|geq|leq|tilde|nabla|dots|cdots|land|lor|sym)' "commands" irA
+\\`!p snip.rv = match.group(1)`$0
+endsnippet
+
+context "math()"
+snippet '(neq|bar|equiv|quad|colon|orot|partial|sim|hat|setminus|ast|hphantom|skw)' "commands-second" irA
+\\`!p snip.rv = match.group(1)`$0
+endsnippet
+
+context "math()"
+snippet '(iso)' "commands-second" irA
+\\`!p snip.rv = match.group(1)`$0
+endsnippet
+
+# Special commands
+
+context "math()"
+snippet 'inn' "in" irA
+\\in$0
+endsnippet
+
+context "math()"
+snippet '([^n])to' "to" irA
+`!p snip.rv = match.group(1)`\\to$0
+endsnippet
+
+context "math()"
+snippet '([^i])nu' "nu" irA
+`!p snip.rv = match.group(1)`\\nu$0
 endsnippet
 
 # Parentheses
@@ -122,26 +196,96 @@ snippet "[|]" "|" irA
 |$1|$0
 endsnippet
 
-# Greek letters
-
-context "math()"
-snippet "(alpha|Alpha|beta|gamma|Gamma|omega|sigma|Sigma|delta|Delta)" "Greek letters" irA
-\\`!p snip.rv = match.group(1)` $0
+snippet "[{]" "{" irA
+{$1}$0
 endsnippet
 
 context "math()"
-snippet "(Omega|eta|chi|mu|pi|Pi|rho|xi|lambda|Lambda|nu)" "Greek letters 2" irA
-\\`!p snip.rv = match.group(1)` $0
-endsnippet
-
-# Math commands
-
-context "math()"
-snippet "(leq|geq|subset|nabla|tilde|hat|backslash|infty|ast|to|sim|cdot)" "Math commands" irA
-\\`!p snip.rv = match.group(1)` $0
+snippet sum "sum" iA
+\\sum_{$1}^{$2}$0
 endsnippet
 
 context "math()"
-snippet inn "Correction for in" A
-\in $0
+snippet prod "prod" iA
+\\prod_{$1}^{$2}$0
 endsnippet
+
+# Priority 1
+
+priority 1
+
+context "math()"
+snippet 'mapsto' "mapsto" irA
+\\mapsto$0
+endsnippet
+
+context "math()"
+snippet weakto "weakto" iA
+\\weakto$0
+endsnippet
+
+context "math()"
+snippet weakstarto "weakstarto" iA
+\\weakstarto$0
+endsnippet
+
+context "math()"
+snippet "\\|" "\|" iA
+\\|$1\\|$0
+endsnippet
+
+context "math()"
+snippet "\\{" "\|" iA
+\\{$1\\}$0
+endsnippet
+
+context "math()"
+snippet theta "theta" iA
+\\theta$0
+endsnippet
+
+context "math()"
+snippet vareps "varepsilon" iA
+\\varepsilon$0
+endsnippet
+
+context "math()"
+snippet widetilde "widetilde" iA
+\\widetilde$0
+endsnippet
+
+context "math()"
+snippet subset "subset" iA
+\\subset$0
+endsnippet
+
+context "math()"
+snippet otimes "otimes" iA
+\\otimes$0
+endsnippet
+
+context "math()"
+snippet qquad "qquad" iA
+\\qquad$0
+endsnippet
+
+context "math()"
+snippet forall "forall" iA
+\\forall \\, $0
+endsnippet
+
+context "math()"
+snippet widehat "widehat" iA
+\\widehat$0
+endsnippet
+
+context "math()"
+snippet sphere "sphere" iA
+\\sphere$0
+endsnippet
+
+context "math()"
+snippet "([^s])pi" "pi" irA
+`!p snip.rv = match.group(1)`\\pi$0
+endsnippet
+

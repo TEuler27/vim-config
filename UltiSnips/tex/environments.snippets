@@ -7,27 +7,40 @@ snippet env "New LaTeX environment" bA
 $0
 endsnippet
 
+snippet frm "New Frame" bA
+\begin{frame}{$1}
+    $2
+\end{frame}
+$0
+endsnippet
 
-snippet ref "New reference" A 
+snippet eqq "New Equation" bA
+\begin{equation}
+    $1
+\end{equation}
+$0
+endsnippet
+
+snippet rf "New reference" A 
 \ref{$1}$0
 endsnippet
 
-snippet cref "New Creference" A 
+snippet crf "New Creference" A 
 \Cref{$1}$0
 endsnippet
 
-snippet eqref "New eqref" A 
+snippet eqrf "New eqref" A 
 \eqref{$1}$0
 endsnippet
 
-snippet label "New label" iA 
+snippet lbl "New label" iA 
 \label{$1}$0
 endsnippet
 
-snippet cite "New cite" A 
+snippet ct "New cite" A 
 \cite{$1}$0
 endsnippet
 
-snippet rcite "New cite with reference" A 
+snippet rct "New cite with reference" A 
 \cite[$1]{$2}$0
 endsnippet
