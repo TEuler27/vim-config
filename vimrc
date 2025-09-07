@@ -50,8 +50,15 @@ Plug 'sirver/ultisnips', { 'for': ['tex', 'snippets']}
 Plug 'dylanaraps/wal.vim'
 Plug 'dpelle/vim-LanguageTool'
 Plug 'farconics/victionary'
+Plug 'sainnhe/everforest'
 
 call plug#end()
 
-colorscheme wal
-
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+set background=dark
+let g:everforest_background = 'soft'
+let g:everforest_better_performance = 1
+colorscheme everforest
