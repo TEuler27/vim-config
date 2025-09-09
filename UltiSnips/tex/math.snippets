@@ -158,6 +158,11 @@ snippet '(neq|bar|equiv|quad|colon|orot|partial|sim|hat|setminus|ast|hphantom|sk
 endsnippet
 
 context "math()"
+snippet '(circ)' "commands-second" irA
+\\`!p snip.rv = match.group(1)`$0
+endsnippet
+
+context "math()"
 snippet '(iso)' "commands-second" irA
 \\`!p snip.rv = match.group(1)`$0
 endsnippet
